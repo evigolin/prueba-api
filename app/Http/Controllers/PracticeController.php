@@ -88,7 +88,7 @@ class PracticeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function spiral(Request $request)
+    public function printMatrix(Request $request)
     {
         $i; 
         $k = 0; 
