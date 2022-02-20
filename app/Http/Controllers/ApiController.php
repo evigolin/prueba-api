@@ -15,7 +15,7 @@ class ApiController extends Controller
     public function register(Request $request)
     {
     	//Validate data
-        $data = $request->only('name', 'email', 'last_name', 'password');
+        $data = $request->only('name', 'last_name','email', 'password');
         $validator = Validator::make($data, [
             'name' => 'required|string',
             'last_name' => 'required|string',
@@ -25,7 +25,7 @@ class ApiController extends Controller
 
         //Send failed response if request is not valid
         if ($validator->fails()) {
-            return response()->json(['error' => $validator->messages()], 200);
+            return response()->json(['error' => $validator->messages(), 'success' => false]);
         }
 
         //Request is valid, create new user
@@ -76,9 +76,12 @@ class ApiController extends Controller
                 ], 500);
         }
  	
+        $user = JWTAuth::user();
+
  		//Token created, return with success response and jwt token
         return response()->json([
             'success' => true,
+            'data' => $user,
             'token' => $token,
         ]);
     }
