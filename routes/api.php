@@ -24,7 +24,7 @@ Route::post('users/login', [ApiController::class, 'authenticate']);
 Route::post('users/register', [ApiController::class, 'register']);
 
 Route::group(['middleware' => ['jwt.verify']], function() {
-    Route::get('logout', [ApiController::class, 'logout']);
+    Route::get('users/logout', [ApiController::class, 'logout']);
     Route::get('users', [ApiController::class, 'get_user']);
     Route::post('spiral', [PracticeController::class, 'spiral']);
 });

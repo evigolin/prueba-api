@@ -39,7 +39,7 @@ class ApiController extends Controller
         //User created, return success response
         return response()->json([
             'success' => true,
-            'message' => 'User created successfully',
+            'message' => 'Usuario creado con éxito',
             'data' => $user
         ], Response::HTTP_OK);
     }
@@ -65,14 +65,14 @@ class ApiController extends Controller
             if (! $token = JWTAuth::attempt($credentials)) {
                 return response()->json([
                 	'success' => false,
-                	'message' => 'Login credentials are invalid.',
+                	'message' => 'Las credenciales de inicio de sesión no son válidas.',
                 ], 400);
             }
         } catch (JWTException $e) {
     	return $credentials;
             return response()->json([
                 	'success' => false,
-                	'message' => 'Could not create token.',
+                	'message' => 'No se pudo iniciar la sesión.',
                 ], 500);
         }
  	
@@ -104,12 +104,12 @@ class ApiController extends Controller
  
             return response()->json([
                 'success' => true,
-                'message' => 'User has been logged out'
+                'message' => 'Sesión cerrada con exito'
             ]);
         } catch (JWTException $exception) {
             return response()->json([
                 'success' => false,
-                'message' => 'Sorry, user cannot be logged out'
+                'message' => 'Lo sentimos, la sesión no pudo ser cerrada'
             ], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
